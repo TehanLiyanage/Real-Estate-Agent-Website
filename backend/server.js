@@ -8,7 +8,7 @@ const rateLimit = require("express-rate-limit");
 const authRoutes = require("./src/routes/authRoutes");
 const propertyRoutes = require("./src/routes/propertyRoutes");
 const favoriteRoutes = require("./src/routes/favoriteRoutes");
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
 dotenv.config();
 
