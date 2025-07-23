@@ -67,12 +67,12 @@ const SearchForm = ({ onSearch }) => {
     }
   };
 
-  const handleScrollToFavorites = () => {
-    const favoritesSection = document.getElementById('favorites');
-    if (favoritesSection) {
-      favoritesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const handleScrollToFavorites = () => {
+  //   const favoritesSection = document.getElementById('favorites');
+  //   if (favoritesSection) {
+  //     favoritesSection.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   const handlereset = () =>{
     setCriteria(initialCriteria);
