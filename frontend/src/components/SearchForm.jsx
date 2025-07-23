@@ -3,7 +3,7 @@ import { Combobox, NumberPicker, DatePicker } from 'react-widgets';
 import 'react-widgets/styles.css';
 
 const SearchForm = ({ onSearch }) => {
-  const [criteria, setCriteria] = useState({
+  const initialCriteria = {
     type: 'Any',
     minPrice: null,
     maxPrice: null,
@@ -11,8 +11,9 @@ const SearchForm = ({ onSearch }) => {
     maxBedrooms: null,
     postcode: '',
     added: null,
-  });
+  };
 
+  const [criteria, setCriteria] = useState(initialCriteria);
   const [error, setError] = useState('');
 
   const handleChange = (name, value) => {
@@ -72,6 +73,12 @@ const SearchForm = ({ onSearch }) => {
       favoritesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const handlereset = () =>{
+    setCriteria(initialCriteria);
+    setError('');
+    onSearch({});
+  }
 
   const propertyTypes = ['Any', 'House', 'Flat'];
 
@@ -170,10 +177,10 @@ const SearchForm = ({ onSearch }) => {
         </button>
         <button
           type="button"
-          onClick={handleScrollToFavorites}
+          onClick={handlereset}
           className="bg-emerald-400 text-white py-2 px-3 rounded-md hover:bg-green-600 transition flex-shrink"
         >
-          Favorites
+          Reset All
         </button>
       </div>
     </form>
@@ -181,3 +188,24 @@ const SearchForm = ({ onSearch }) => {
 };
 
 export default SearchForm;
+
+
+
+//SCROLL TO FAVORITES BUTTON
+
+  // const handleScrollToFavorites = () => {
+  //   const favoritesSection = document.getElementById('favorites');
+  //   if (favoritesSection) {
+  //     favoritesSection.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+
+        // <button
+        //   type="button"
+        //   onClick={handleScrollToFavorites}
+        //   className="bg-emerald-400 text-white py-2 px-3 rounded-md hover:bg-green-600 transition flex-shrink"
+        // >
+        //   Favorites
+        // </button>
+
+// ---------------------------------------------------------------------------------------------------------------------
