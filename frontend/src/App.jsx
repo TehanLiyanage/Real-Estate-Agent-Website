@@ -18,7 +18,7 @@ const App = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/properties"); // ✅ Correct API URL
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/properties`); // ✅ Correct API URL
       console.log("✅ Properties Fetched:", response.data); // Debugging Log
       setProperties(response.data);
       setFilteredProperties(response.data);
