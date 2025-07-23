@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Properties from './components/Properties';
-import Favorites from './components/Favorites';
+import Favorites from './components/favorites';
 import PropertyDetails from './components/PropertyDetails';
 
 const App = () => {
