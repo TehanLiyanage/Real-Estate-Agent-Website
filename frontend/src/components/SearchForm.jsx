@@ -13,12 +13,27 @@ const SearchForm = ({ onSearch }) => {
     added: null,
   };
 
-  const [criteria, setCriteria] = useState(initialCriteria);
-  const [error, setError] = useState('');
+const [criteria, setCriteria] = useState(() => {
+  const saved = localStorage.getItem('searchCriteria');
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    if (parsed.added) {
+      parsed.added = new Date(parsed.added);
+    }
+    return parsed;
+  }
+  return initialCriteria;
+});
 
-  const handleChange = (name, value) => {
-    setCriteria({ ...criteria, [name]: value });
-  };
+
+const [error, setError] = useState('');
+
+const handleChange = (name, value) => {
+  const updated = { ...criteria, [name]: value };
+  setCriteria(updated);
+  localStorage.setItem('searchCriteria', JSON.stringify(updated));
+};
+
 
   const validateCriteria = () => {
     const postcodePattern = /^([A-Z]{1,2}[0-9]{1,2}[A-Z]?[ ]?[0-9]?[A-Z]{0,2})$/i;
@@ -76,6 +91,7 @@ const SearchForm = ({ onSearch }) => {
 
   const handlereset = () =>{
     setCriteria(initialCriteria);
+    localStorage.removeItem('searchCriteria');
     setError('');
     onSearch({});
   }

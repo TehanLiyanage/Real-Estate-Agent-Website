@@ -9,7 +9,15 @@ import PropertyDetails from './components/PropertyDetails';
 const App = () => {
   const [properties, setProperties] = useState([]); // ✅ Store all properties from MongoDB
   const [filteredProperties, setFilteredProperties] = useState([]); // ✅ Stores filtered results
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('favoriteProperties');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favoriteProperties', JSON.stringify(favorites));
+  }, [favorites]);
+
 
   // ✅ Fetch properties from MongoDB API on initial load
   useEffect(() => {
